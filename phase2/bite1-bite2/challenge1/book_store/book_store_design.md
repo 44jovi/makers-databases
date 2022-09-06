@@ -17,7 +17,7 @@ Table: students
 
 Columns:
 id | name | cohort_name -->
-```
+<!-- ``` -->
 
 ## 2. Create Test SQL seeds
 
@@ -114,6 +114,7 @@ class BookRepository
 
     # Returns an array of Book objects.
   end
+end
 ```
 
 ## 6. Write Test Examples
@@ -128,19 +129,27 @@ These examples will later be encoded as RSpec tests.
 # 1
 # Get all books
 
-repo = BookRepository.new
+    expect(books.length).to eq 5
 
-books = repo.all
+    expect(books[0].id).to eq "1"
+    expect(books[0].title).to eq "Nineteen Eighty-Four"
+    expect(books[0].author_name).to eq "George Orwell"
 
-books.length # =>  2
+    expect(books[1].id).to eq "2"
+    expect(books[1].title).to eq "Mrs Dalloway"
+    expect(books[1].author_name).to eq "Virginia Woolf"
 
-books[0].id # =>  1
-books[0].name # =>  'Book One'
-books[0].author_name # =>  'Author One'
+    expect(books[2].id).to eq "3"
+    expect(books[2].title).to eq "Emma"
+    expect(books[2].author_name).to eq "Jane Austen"
 
-books[1].id # =>  2
-books[1].name # =>  'Book Two'
-books[1].author_name # =>  'Author Two'
+    expect(books[3].id).to eq "4"
+    expect(books[3].title).to eq "Dracula"
+    expect(books[3].author_name).to eq "Bram Stoker"
+
+    expect(books[4].id).to eq "5"
+    expect(books[4].title).to eq "The Age of Innocence"
+    expect(books[4].author_name).to eq "Edith Wharton"  
 
 ```
 
@@ -159,11 +168,11 @@ This is so you get a fresh table contents every time you run the test suite.
 
 def reset_books_table
   seed_sql = File.read('spec/seeds_book_store.sql')
-  connection = PG.connect({ host: '127.0.0.1', dbname: 'books' })
+  connection = PG.connect({ host: '127.0.0.1', dbname: 'book_store_test' })
   connection.exec(seed_sql)
 end
 
-describe BookRepositorybooks do
+describe BookRepository do
   before(:each) do 
     reset_books_table
   end

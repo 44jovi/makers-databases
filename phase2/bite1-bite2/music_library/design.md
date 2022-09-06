@@ -165,7 +165,7 @@ This is so you get a fresh table contents every time you run the test suite.
 
 def reset_albums_table
   seed_sql = File.read('spec/seeds_albums.sql')
-  user = 'jovik'
+  user = ENV['PGUSER1'].to_s
   password = ENV['PGPASSWORD'].to_s
   connection = PG.connect({ host: '127.0.0.1', dbname: 'music_library_test', user: user, password: password })
   connection.exec(seed_sql)

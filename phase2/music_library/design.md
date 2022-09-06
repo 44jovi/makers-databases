@@ -138,15 +138,15 @@ repo = AlbumRepository.new
 
 albums = repo.all
 
-albums.length # =>  2
+albums.length # => 2
 
-albums[0].id # =>  1
-albums[0].title # =>  'Bleach'
-albums[0].release_year # =>  '1989'
+albums[0].id # => 1
+albums[0].title # => 'Bleach'
+albums[0].release_year # => '1989'
 
 albums[0].id # =>  2
-albums[0].title # =>  'Hybrid Theory'
-albums[0].release_year # =>  '2000'
+albums[0].title # => 'Hybrid Theory'
+albums[0].release_year # => '2000'
 
 ```
 
@@ -176,7 +176,9 @@ describe AlbumRepository do
     reset_albums_table
   end
 
-  # (your tests will go here).
+  album_repository = AlbumRepositor.new
+  expect(album_repository.all)to eq 0
+
 end
 ```
 

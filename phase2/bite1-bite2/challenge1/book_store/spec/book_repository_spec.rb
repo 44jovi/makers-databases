@@ -1,7 +1,6 @@
-require 'book_repository'
 require 'book'
+require 'book_repository'
 require 'database_connection'
-
 
 RSpec.describe BookRepository do
 
@@ -12,7 +11,6 @@ RSpec.describe BookRepository do
     connection = PG.connect({ host: '127.0.0.1', dbname: 'book_store_test', user: user, password: password })
     connection.exec(seed_sql)
   end
-
 
   before(:each) do 
     reset_books_table
@@ -34,5 +32,4 @@ RSpec.describe BookRepository do
     expect(books[1].author_name).to eq "Author Two"
 
   end
-
 end

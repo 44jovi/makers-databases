@@ -1,39 +1,45 @@
 # Movies Directory - Single Table Design Recipe Template
 
+(Databases > Phase 2 > Bite 3 > Challenge 1
+
 _Copy this recipe template to design and create a database table from a specification._
 
 ## 1. Extract nouns from the user stories or specification
 
 ```
-# EXAMPLE USER STORY:
-# (analyse only the relevant part - here the final line).
+# USER STORY:
+# analyse only the relevant parts
 
-As a music lover,
-So I can organise my records,
-I want to keep a list of albums' titles.
+As a person who loves movies,
+So I can list all my favourite movies
+I want to see a list of movies' titles.
 
-As a music lover,
-So I can organise my records,
-I want to keep a list of albums' release year.
+As a person who loves movies,
+So I can list all my favourite movies
+I want to see a list of movies' genres.
+
+As a person who loves movies,
+So I can list all my favourite movies
+I want to see a list of movies' release year.
 ```
 
 ```
 Nouns:
 
-album, title, release year
+movie, title, genre, release year
 ```
 
 ## 2. Infer the Table Name and Columns
 
 Put the different nouns in this table. Replace the example with your own nouns.
 
-| Record                | Properties          |
-| --------------------- | ------------------  |
-| album                 | title, release year
+| Record                | Properties                |
+| --------------------- | ------------------------  |
+| movie                 | title, genre, release year
 
 Name of the table (always plural): `albums` 
 
-Column names: `title`, `release_year`
+Column names: `id`, `title`, `genre`, `release_year`
 
 ## 3. Decide the column types.
 
@@ -48,6 +54,7 @@ Remember to **always** have the primary key `id` as a first column. Its type wil
 
 id: SERIAL
 title: text
+genre: text
 release_year: int
 ```
 
@@ -59,9 +66,10 @@ release_year: int
 
 -- Replace the table name, columm names and types.
 
-CREATE TABLE albums (
+CREATE TABLE movies (
   id SERIAL PRIMARY KEY,
   title text,
+  genre text,
   release_year int
 );
 ```
@@ -69,15 +77,13 @@ CREATE TABLE albums (
 ## 5. Create the table.
 
 ```bash
-psql -h 127.0.0.1 database_name < albums_table.sql
+psql -h 127.0.0.1 movies_directory < movies.sql
 ```
 
-<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
+# 6. Example Data
 
----
-
-**How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Fsingle_table_design_recipe_template.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Fsingle_table_design_recipe_template.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Fsingle_table_design_recipe_template.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Fsingle_table_design_recipe_template.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Fsingle_table_design_recipe_template.md&prefill_Sentiment=😀)  
-Click an emoji to tell us.
-
-<!-- END GENERATED SECTION DO NOT EDIT -->
+```sql
+INSERT INTO movies
+	(title, genre, release_year)
+	VALUES('The Hobbit: An Unexpected Journey', 'Fantasy', 2012);
+```

@@ -6,21 +6,38 @@ class RecipeRepository
   # No arguments
   def all
     sql = 'SELECT * FROM recipes;'
-    params = []
-    result = DatabaseConnection.exec_params(sql, params)
-    # binding.irb
-    # Executes the SQL query:
-    # ;
+    sql_params = []
+    result_set = DatabaseConnection.exec_params(sql, sql_params)
 
-    # Returns an array of Recipe objects.
+    recipes = []
+
+    result_set.each do |record|
+      recipe = Recipe.new
+
+      recipe.id = record["id"]
+      recipe.name = record["name"]
+      recipe.cooking_time = record["cooking_time"]
+      recipe.rating = record["rating"]
+
+      recipes << recipe
+    end
+
+    return recipes
   end
 
-  # Selecting a single recipe record
-  # 1 argument 'id' as an integer
   def find(id)
-    # Executes the SQL query:
-    # SELECT * FROM albums WHERE id = $1;
+    
+  sql = "SELECT * FROM recipes WHERE id = $1;"
+  sql_params = [id]
+  result_set = DatabaseConnection.exec_params(sql, sql_params)  
 
-    # Returns a single Recipe object
+  recipe = Recipe.new
+
+  recipe.id = result_set[0]["id"]
+  recipe.name = result_set[0]["name"]
+  recipe.cooking_time = result_set[0]["cooking_time"]
+  recipe.rating = result_set[0]["rating"]
+
+  return recipe
   end
 end

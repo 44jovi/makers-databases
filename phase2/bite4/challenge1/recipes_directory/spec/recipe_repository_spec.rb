@@ -32,17 +32,19 @@ RSpec.describe RecipeRepository do
     expect(recipes[1].rating).to eq '1'
   end
 
-  xit 'finds one recipe("Burger")' do
+  it 'finds one recipe("Burger")' do
+    repo = RecipeRepository.new
     recipe = repo.find(1)
-    expect(recipe.id).to eq 1
+    expect(recipe.id).to eq "1"
     expect(recipe.name).to eq "Burger"
     expect(recipe.cooking_time).to eq "30"
     expect(recipe.rating).to eq "5"
   end
 
-  xit 'finds one recipe ("Salad")' do
+  it 'finds one recipe ("Salad")' do
+    repo = RecipeRepository.new    
     recipe = repo.find(2)
-    expect(recipe.id).to eq 2
+    expect(recipe.id).to eq "2"
     expect(recipe.name).to eq "Salad"
     expect(recipe.cooking_time).to eq "2"
     expect(recipe.rating).to eq "1"

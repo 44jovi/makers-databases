@@ -2,6 +2,7 @@ require 'album'
 require 'album_repository'
 
 RSpec.describe AlbumRepository do  
+  
   def reset_albums_table
     seed_sql = File.read('spec/seeds_albums.sql')
     user = ENV['PGUSER1'].to_s
@@ -64,11 +65,8 @@ RSpec.describe AlbumRepository do
 
       record = repo.all.last
       expect(record.title).to eq "Dummy"
-      expect(record.release_year).to eq "1994"
-      
+      expect(record.release_year).to eq "1994"      
     end
-  
-
-  end 
+  end
 
 end

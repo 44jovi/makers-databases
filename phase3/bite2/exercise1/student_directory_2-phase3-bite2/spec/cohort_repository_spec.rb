@@ -1,5 +1,7 @@
 require 'cohort'
 require 'cohort_repository'
+require 'student'
+
 
 RSpec.describe CohortRepository do  
   
@@ -17,11 +19,10 @@ RSpec.describe CohortRepository do
   end
 
   describe "#find_with_students" do
-    it "" do
- 
+    it "returns array of students in cohort 'Sep'" do
+      cohort = CohortRepository.new
+      expect(cohort.find_with_students(1)).to eq ["Cohort: Sep - Student ID: 1 Student name: Wendy", "Cohort: Sep - Student ID: 3 Student name: Bob"]
     end
   end
-
-
 
 end

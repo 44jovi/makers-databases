@@ -15,8 +15,9 @@ class CohortRepository
     result_set = DatabaseConnection.exec_params(sql, sql_params)
 
     result_set.map do |record|
-      "Cohort: #{record["cohort_name"]} - Student ID: #{record["student_id"]} Student name: #{record["student_name"]}"
+      "Cohort: #{record["cohort_name"]} - Student ID: #{record["student_id"]} Student name: #{record["student_name"]}"      
     end
+
   end
 
 end
